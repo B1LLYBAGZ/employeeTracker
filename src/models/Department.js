@@ -16,7 +16,7 @@ const Department = sequelize.define(
   },
   {
     tableName: "Departments",
-    timestamps: false,
+    timestamps: false, // Disable timestamps
   }
 );
 

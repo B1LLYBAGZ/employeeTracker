@@ -1,6 +1,14 @@
 const inquirer = require("inquirer");
+const Role = require("../models/Role");
 
 const employeePrompt = async () => {
+  // Fetch available roles
+  const roles = await Role.findAll();
+  const roleChoices = roles.map((role) => ({
+    name: role.title,
+    value: role.id,
+  }));
+
   const answers = await inquirer.prompt([
     {
       type: "input",
@@ -13,16 +21,28 @@ const employeePrompt = async () => {
       message: "Enter the employee's last name:",
     },
     {
-      type: "input",
+      type: "list",
       name: "role_id",
-      message: "Enter the employee's role ID:",
+      message: "Select the employee's role:",
+      choices: roleChoices,
     },
     {
       type: "input",
       name: "manager_id",
-      message: "Enter the employee's manager ID:",
+      message: "Enter the employee's manager ID (if any):",
+      validate: (input) => {
+        return (
+          input === "" ||
+          !isNaN(parseInt(input)) ||
+          "Please enter a valid number"
+        );
+      },
+      filter: (input) => {
+        return input === "" ? null : parseInt(input);
+      },
     },
   ]);
+
   return answers;
 };
 

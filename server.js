@@ -5,12 +5,6 @@ const sequelize = require("./src/config/dbConfig");
 const departmentPrompt = require("./src/prompts/departmentPrompt");
 const employeePrompt = require("./src/prompts/employeePrompt");
 const rolePrompt = require("./src/prompts/rolePrompt");
-const {
-  createDepartment,
-  getDepartments,
-} = require("./src/queries/department");
-const { createEmployee, getEmployees } = require("./src/queries/employee");
-const { createRole, getRoles } = require("./src/queries/role");
 const Department = require("./src/models/Department");
 const Role = require("./src/models/Role");
 const Employee = require("./src/models/Employee");
@@ -22,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 sequelize
-  .sync()
+  .sync({ force: true })
   .then(() => {
     figlet("Employee Tracker", (err, data) => {
       if (err) {

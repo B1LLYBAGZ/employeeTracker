@@ -32,7 +32,7 @@ const Employee = sequelize.define(
   },
   {
     tableName: "Employees",
-    timestamps: false,
+    timestamps: false, // Disable timestamps
   }
 );
 
