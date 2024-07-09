@@ -72,11 +72,13 @@ const displayMenu = async () => {
       });
       break;
     case "View all employees":
-      const employees = await Employee.findAll({ include: Role });
+      const employees = await Employee.findAll({
+        include: { model: Role, as: "role" },
+      });
       console.table(
         employees.map((employee) => {
           const employeeJson = employee.toJSON();
-          employeeJson.role = employee.Role.title;
+          employeeJson.role = employee.role ? employee.role.title : "N/A"; // Display role title
           return employeeJson;
         })
       );
