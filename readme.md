@@ -146,7 +146,7 @@ Database configuration is handled by `sequelize` and the configuration file is l
 
 ## Video Demo
 
-Watch the video demonstration of the Employee Tracker application [here](#).
+[Untitled_ Jul 9, 2024 5_18 PM.webm](https://github.com/B1LLYBAGZ/employeeTracker/assets/164563465/87788d6e-fdb3-4abb-af1d-7fa86dbca92f)
 
 ## Contacts
 
